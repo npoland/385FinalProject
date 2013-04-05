@@ -32,16 +32,13 @@ end Color_Mapper;
 
 architecture Behavioral of Color_Mapper is
 
-signal Ball_on : std_logic;
-
 begin
 
   RGB_Display : process (DrawX, DrawY)
-    variable GreenVar, BlueVar : std_logic_vector(22 downto 0);
   begin
-    Red   <= DrawX(9 downto 0);
-    Green <= DrawX(9 downto 0);
-    Blue  <= DrawX(9 downto 0);
+    Red   <= "0000000000";
+    Green <= "0000000000";
+    Blue  <= "0000000000";
   end process RGB_Display;
 
 end Behavioral;

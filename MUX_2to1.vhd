@@ -19,13 +19,11 @@ use ieee.std_logic_1164.all;
 use ieee.std_logic_arith.all;
 use ieee.std_logic_unsigned.all;
 
-library work;
-use work.SLC3_2.all;
 
 entity MUX_2to1 is
   port( sel : in std_logic_vector(1 downto 0);
         D0, D1, D2, D3 : in std_logic_vector(15 downto 0);
-        Dout: in std_logic_vector(15 downto 0));
+        Dout: out std_logic_vector(15 downto 0));
 end entity;
 
 architecture behavioral of MUX_2to1 is

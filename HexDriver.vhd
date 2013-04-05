@@ -23,7 +23,7 @@ use ieee.std_logic_unsigned.all;
 entity HexDriver is
    port ( In0  : in  std_logic_vector(3 downto 0);
           Out0 : out std_logic_vector(6 downto 0));
-end Hex_Driver;
+end HexDriver;
 architecture Behavioral of HexDriver is
 
 begin
