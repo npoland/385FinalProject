@@ -65,8 +65,20 @@ component BackgroundColor is
            Blue  : out std_logic_vector(9 downto 0));
 end component;
 
+component Grid is
+   Port ( DrawX   : in std_logic_vector(9 downto 0);
+          DrawY   : in std_logic_vector(9 downto 0);
+          InRed   : in std_logic_vector(9 downto 0);
+          InGreen : in std_logic_vector(9 downto 0);
+          InBlue  : in std_logic_vector(9 downto 0);
+          Red     : out std_logic_vector(9 downto 0);
+          Green   : out std_logic_vector(9 downto 0);
+          Blue    : out std_logic_vector(9 downto 0));
+end component;
+
 signal vsSig : std_logic;
 signal DrawXSig, DrawYSig : std_logic_vector(9 downto 0);
+signal BGred, BGgreen, BGblue : std_logic_vector(9 downto 0);
 
 begin
 
@@ -84,6 +96,16 @@ vgaSync_instance : vga_controller
 Color_instance : BackgroundColor
    Port Map(DrawX => DrawXSig,
             DrawY => DrawYSig,
+            Red => BGred,
+            Green => BGgreen,
+            Blue => Bgblue);
+
+Grid_instance : Grid
+   Port Map(DrawX => DrawXSig,
+            DrawY => DrawYSig,
+            InRed => BGred,
+            InGreen => BGgreen,
+            InBlue => BGblue,
             Red => Red,
             Green => Green,
             Blue => Blue);

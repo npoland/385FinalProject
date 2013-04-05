@@ -10,9 +10,7 @@
 --|            Created 4/4/2013         |--
 -------------------------------------------
 --|             Description:            |--
---| This maps colors to the screen. For |--
---|  now this is just to test the VGA.  |--
---|  This will be replaced eventually.  |--
+--|  Maps the background to the screen  |--
 --|-------------------------------------|--
 -------------------------------------------
 
