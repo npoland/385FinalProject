@@ -58,3 +58,4 @@ set_global_assignment -name VHDL_FILE reg_16.vhd
 set_global_assignment -name VHDL_FILE HexDriver.vhd
 set_global_assignment -name VHDL_FILE MUX_2to1.vhd
 set_global_assignment -name VHDL_FILE VGA_Controller.vhd
+set_global_assignment -name VHDL_FILE ColorMapper.vhd
