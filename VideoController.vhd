@@ -1,0 +1,25 @@
+-------------------------------------------
+-------------------------------------------
+--| ECE 385 Final Project: Oscilliscope |--
+--|            Nathan Poland            |--
+--|                  &                  |--
+--|              Phil Lange             |--
+-------------------------------------------
+--|         VideoController.vhd         |--
+--|               Version: 0            |--
+--|            Created 4/4/2013         |--
+-------------------------------------------
+--|             Description:            |--
+--|  This is the highest level entity   |--
+--|   for the video output. It will be  |--
+--| responsible for coordinate the      |--
+--| mapping of various graphics to the  |--
+--|               screen.               |--
+-------------------------------------------
+--|            Change Log               |--
+--|   4/4/2013 - Created the file and   |--
+--|   started filling in some general   |--
+--|    items and comments to try and    |--
+--|   describe what this unit will do   |--
+--|-------------------------------------|--
+-------------------------------------------

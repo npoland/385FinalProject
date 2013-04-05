@@ -1,0 +1,21 @@
+-------------------------------------------
+-------------------------------------------
+--| ECE 385 Final Project: Oscilliscope |--
+--|            Nathan Poland            |--
+--|                  &                  |--
+--|              Phil Lange             |--
+-------------------------------------------
+--|         AudioChipInterface.vhd      |--
+--|               Version: 0            |--
+--|            Created 4/4/2013         |--
+-------------------------------------------
+--|             Description:            |--
+--| This will be the lowest level that  |--
+--|  interacts directly with the audio  |--
+--|  chip on the DE2 board to get the   |--
+--|  incoming signal to be processed.   |--
+-------------------------------------------
+--|            Change Log               |--
+--|    4/4/2013 - Created the file      |--
+--|-------------------------------------|--
+-------------------------------------------
