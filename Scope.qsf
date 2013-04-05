@@ -48,3 +48,13 @@ set_global_assignment -name USE_GENERATED_PHYSICAL_CONSTRAINTS OFF -section_id e
 set_global_assignment -name SEARCH_PATH "c:\\users\\phil\\dropbox\\ece 385\\labs\\lab9\\vhdl.phil/"
 set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
 set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
+set_global_assignment -name VHDL_FILE Scope.vhd
+set_global_assignment -name VHDL_FILE VideoController.vhd
+set_global_assignment -name VHDL_FILE AudioChipInterface.vhd
+set_global_assignment -name VHDL_FILE ControlUnit.vhd
+set_global_assignment -name VHDL_FILE ProcessingUnit.vhd
+set_global_assignment -name VHDL_FILE TriState16.vhd
+set_global_assignment -name VHDL_FILE reg_16.vhd
+set_global_assignment -name VHDL_FILE HexDriver.vhd
+set_global_assignment -name VHDL_FILE MUX_2to1.vhd
+set_global_assignment -name VHDL_FILE VGA_Controller.vhd
