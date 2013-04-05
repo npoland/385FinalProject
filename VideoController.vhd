@@ -57,7 +57,7 @@ component vga_controller is
            DrawY : out std_logic_vector(9 downto 0));
 end component;
 
-component Color_Mapper is
+component BackgroundColor is
     Port ( DrawX : in std_logic_vector(9 downto 0);
            DrawY : in std_logic_vector(9 downto 0);
            Red   : out std_logic_vector(9 downto 0);
@@ -65,16 +65,14 @@ component Color_Mapper is
            Blue  : out std_logic_vector(9 downto 0));
 end component;
 
-signal Reset_h, vsSig : std_logic;
+signal vsSig : std_logic;
 signal DrawXSig, DrawYSig : std_logic_vector(9 downto 0);
 
 begin
 
-Reset_h <= not Reset; -- The push buttons are active low
-
 vgaSync_instance : vga_controller
    Port map(clk => clk,
-            reset => Reset_h,
+            Reset => Reset,
             hs => hs,
             vs => vsSig,
             pixel_clk => VGA_clk,
@@ -83,7 +81,7 @@ vgaSync_instance : vga_controller
             DrawX => DrawXSig,
             DrawY => DrawYSig);
 
-Color_instance : Color_Mapper
+Color_instance : BackgroundColor
    Port Map(DrawX => DrawXSig,
             DrawY => DrawYSig,
             Red => Red,

@@ -5,7 +5,7 @@
 --|                  &                  |--
 --|              Phil Lange             |--
 -------------------------------------------
---|             ColorMapper.vhd         |--
+--|           BackgroundColor.vhd       |--
 --|               Version: 0            |--
 --|            Created 4/4/2013         |--
 -------------------------------------------
@@ -22,15 +22,15 @@ use ieee.std_logic_arith.all;
 use ieee.std_logic_unsigned.all;
 
 
-entity Color_Mapper is
+entity BackgroundColor is
    Port ( DrawX : in std_logic_vector(9 downto 0);
           DrawY : in std_logic_vector(9 downto 0);
           Red   : out std_logic_vector(9 downto 0);
           Green : out std_logic_vector(9 downto 0);
           Blue  : out std_logic_vector(9 downto 0));
-end Color_Mapper;
+end BackgroundColor;
 
-architecture Behavioral of Color_Mapper is
+architecture Behavioral of BackgroundColor is
 
 begin
 
