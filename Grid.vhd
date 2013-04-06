@@ -72,13 +72,13 @@ begin
          (DrawY(9 downto 0) = "0101011000") or
          (DrawY(9 downto 0) = "0110001100") or
          (DrawY(9 downto 0) = "0111000000"))) and (DrawXOn = '1') and (DrawYOn = '1')) then
-      Red   <= "1111111111";
-      Green <= "1111111111";
-      Blue  <= "1111111111";
+      Red   <= "0010000000";
+      Green <= "0010000000";
+      Blue  <= "0010000000";
     elsif (((DrawX(9 downto 0) = "0101000000") or (DrawY(9 downto 0) = "0011110000")) and (DrawXOn = '1') and (DrawYOn = '1')) then
-      Red   <= "1000000000";
+      Red   <= "0100000000";
       Green <= "0000000000";
-      Blue  <= "1000000000";
+      Blue  <= "0100000000";
     else
       Red   <= InRed;
       Green <= InGreen;

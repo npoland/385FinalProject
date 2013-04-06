@@ -5,20 +5,18 @@
 --|                  &                  |--
 --|              Phil Lange             |--
 -------------------------------------------
---|         AudioChipInterface.vhd      |--
+--|                I2C.vhd              |--
 --|               Version: 0            |--
 --|            Created 4/4/2013         |--
 -------------------------------------------
 --|             Description:            |--
---| This will be the lowest level that  |--
---|  interacts directly with the audio  |--
---|  chip on the DE2 board to get the   |--
---|  incoming signal to be processed.   |--
+--|      Handles I2C communications     |--
 -------------------------------------------
 --|            Change Log               |--
 --|    4/5/2013 - Created the file      |--
 --|-------------------------------------|--
 -------------------------------------------
+
 
 
 library ieee;
@@ -27,20 +25,34 @@ use ieee.std_logic_arith.all;
 use ieee.std_logic_unsigned.all;
 
 
-entity AudioInterface is
-   Port ( Clk        : in std_logic;
-          Enable     : in std_logic;
-          TakeSample : in std_logic;
-end AudioInterface;
+entity I2C is
+   Port ( Clk    : in std_logic;
+          Enable : in std_logic;
+          RW     : in std_logic;
+          SDL    : out std_logic;
+          SCL    : out std_logic;
+end BackgroundColor;
 
-architecture Behavioral of AudioInterface is
+architecture Behavioral of I2C is
 
 begin
 
-  AudioInterface : process (Enable)
+  I2C_Write : process (Enable)
   begin
-
-  end process AudioInterface;
-
+    if (RW = '1') then
+      
+    else
+      
+    end if;
+  end process I2C_Write;
+  
+  I2C_Read : process (Enable)
+  begin
+    if (RW = '0') then
+      
+    else
+      
+    end if;
+  end process I2C_Read;
 
 end Behavioral;
