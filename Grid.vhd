@@ -32,36 +32,53 @@ entity Grid is
 end Grid;
 
 architecture Behavioral of Grid is
-
-signal Xdivision, Ydivision : std_logic_vector(9 downto 0);
+signal DrawXOn, DrawYOn : std_logic;
 begin
-
-  Xdivision <= "1111101111";
-  Ydivision <= "1111101111";
-  
---  Xcounter : process (DrawX)
---  begin
---    if (Xcount < "0000000100") then
---      Xcount <= Xcount + "0000000001";
---      GridON <= '1';
---    else
---      GridON <= '0';
---      Xcount <= "0000000000";
---    end if;
---  end process Xcounter;
---  
---  Ycounter : process (DrawY)
---  begin
---  
---  end process Ycounter;
 
   DisplayGrid : process (DrawX, DrawY)
   
   begin
-    if (((DrawX(4 downto 0) xor Xdivision(4 downto 0)) = "111") or ((Drawy(4 downto 0) xor Ydivision(4 downto 0)) = "111")) then
+    if (DrawX(9 downto 0) = "0000001000") then
+      DrawXOn <= '1';
+    elsif (DrawX(9 downto 0) = "1001111001") then
+      DrawXOn <= '0';
+    end if;
+    
+    if (DrawY(9 downto 0) = "0000100000") then
+      DrawYOn <= '1';
+    elsif (DrawY(9 downto 0) = "0111000001") then
+      DrawYOn <= '0';
+    end if;
+        
+    if ((((DrawX(9 downto 0) = "0000001000") or
+         (DrawX(9 downto 0) = "0000111100") or
+         (DrawX(9 downto 0) = "0001110000") or
+         (DrawX(9 downto 0) = "0010100100") or
+         (DrawX(9 downto 0) = "0011011000") or
+         (DrawX(9 downto 0) = "0100001100") or
+--         (DrawX(9 downto 0) = "0101000000") or
+         (DrawX(9 downto 0) = "0101110100") or
+         (DrawX(9 downto 0) = "0110101000") or
+         (DrawX(9 downto 0) = "0111011100") or
+         (DrawX(9 downto 0) = "1000010000") or
+         (DrawX(9 downto 0) = "1001000100") or
+         (DrawX(9 downto 0) = "1001111000")) or
+        ((DrawY(9 downto 0) = "0000100000") or
+         (DrawY(9 downto 0) = "0001010100") or
+         (DrawY(9 downto 0) = "0010001000") or
+         (DrawY(9 downto 0) = "0010111100") or
+--         (DrawY(9 downto 0) = "0011110000") or
+         (DrawY(9 downto 0) = "0100100100") or
+         (DrawY(9 downto 0) = "0101011000") or
+         (DrawY(9 downto 0) = "0110001100") or
+         (DrawY(9 downto 0) = "0111000000"))) and (DrawXOn = '1') and (DrawYOn = '1')) then
       Red   <= "1111111111";
       Green <= "1111111111";
       Blue  <= "1111111111";
+    elsif (((DrawX(9 downto 0) = "0101000000") or (DrawY(9 downto 0) = "0011110000")) and (DrawXOn = '1') and (DrawYOn = '1')) then
+      Red   <= "1000000000";
+      Green <= "0000000000";
+      Blue  <= "1000000000";
     else
       Red   <= InRed;
       Green <= InGreen;
