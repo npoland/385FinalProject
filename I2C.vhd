@@ -33,26 +33,54 @@ entity I2C is
           SCL    : out std_logic;
 end BackgroundColor;
 
+
+entity I2C is
+    Port( clk           : in std_logic;
+          Reset         : in std_logic;
+end I2C;
+
 architecture Behavioral of I2C is
+
+type ctrl_state is (Halted,
+                    start1,
+                    start2,
+                    
+                    
+                    
+                    
+                    
+                    );
+signal State, Next_state : ctrl_state;
 
 begin
 
-  I2C_Write : process (Enable)
-  begin
-    if (RW = '1') then
-      
-    else
-      
-    end if;
-  end process I2C_Write;
-  
-  I2C_Read : process (Enable)
-  begin
-    if (RW = '0') then
-      
-    else
-      
-    end if;
-  end process I2C_Read;
+-- State Machine Halted--
+Assign_Next_State : process (clk, reset)
+begin
+  if (Reset = '1') then
+    State <= Halted;
+  elsif (rising_edge(clk)) then
+    State <= Next_state;
+  end if;
+end process;
 
-end Behavioral;
+Get_Next_State : process (State, Enable)
+begin
+  case State is
+    when Halted => 
+      if (Enable = '0') then
+        Next_state <= Halted;
+      else
+        Next_state <= S_18;
+      end if;
+    when S_18 =>
+      Next_state <= S_33_1;     
+    when others =>
+      NULL;
+  end case;
+end process;
+
+Assign_Control_Signals : process (state)
+begin
+
+end Behavioral;  
