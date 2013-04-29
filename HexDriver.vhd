@@ -20,11 +20,11 @@ use ieee.std_logic_arith.all;
 use ieee.std_logic_unsigned.all;
 
 
-entity HexDriver is
+entity exDriver is
    port ( In0  : in  std_logic_vector(3 downto 0);
           Out0 : out std_logic_vector(6 downto 0));
-end HexDriver;
-architecture Behavioral of HexDriver is
+end exDriver;
+architecture Behavioral of exDriver is
 
 begin
   with In0 select

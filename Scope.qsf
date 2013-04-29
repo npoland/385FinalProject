@@ -50,7 +50,6 @@ set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
 set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
 set_global_assignment -name VHDL_FILE Scope.vhd
 set_global_assignment -name VHDL_FILE VideoController.vhd
-set_global_assignment -name VHDL_FILE AudioChipInterface.vhd
 set_global_assignment -name VHDL_FILE ControlUnit.vhd
 set_global_assignment -name VHDL_FILE ProcessingUnit.vhd
 set_global_assignment -name VHDL_FILE TriState16.vhd
@@ -103,5 +102,10 @@ set_location_assignment PIN_D12 -to Green[9]
 set_location_assignment PIN_E12 -to Green[8]
 set_global_assignment -name VHDL_FILE BackgroundColor.vhd
 set_global_assignment -name VHDL_FILE Grid.vhd
+set_global_assignment -name VHDL_FILE FontRom.vhd
+set_global_assignment -name VHDL_FILE CharMapper.vhd
+set_global_assignment -name VHDL_FILE CharGrid.vhd
+set_global_assignment -name VHDL_FILE MenuMapper.vhd
+set_global_assignment -name VHDL_FILE MenuControl.vhd
+set_global_assignment -name VHDL_FILE CharFiller.vhd
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
-set_global_assignment -name VHDL_FILE I2C.vhd
