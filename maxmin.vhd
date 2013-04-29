@@ -33,13 +33,6 @@ BEGIN
       ELSIF(DIN < min_int)THEN
         min_int <= DIN;
       END IF;
---      IF(count  = x")THEN
---        MAX <= max_int;
---        MIN <= min_int;
---        
---        max_int <= "0000";
---        min_int <= "1111";
---      END IF;
     END IF;
   END PROCESS;
   

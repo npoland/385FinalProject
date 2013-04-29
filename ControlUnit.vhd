@@ -84,9 +84,9 @@ BEGIN
 		data_over   => data_over,
 		ADCDATA     => ADCDATA,
 		
-		AUD_MCLK    => AUD_MCLK, --:             OUT std_logic; -- Codec master clock OUTPUT
+		AUD_MCLK    => AUD_MCLK, --:              OUT std_logic; -- Codec master clock OUTPUT
 		AUD_BCLK    => AUD_BCLK, -- :             IN std_logic; -- Digital Audio bit clock
-		AUD_ADCDAT  => AUD_ADCDAT, -- :			IN std_logic;
+		AUD_ADCDAT  => AUD_ADCDAT, -- :			      IN std_logic;
 		AUD_DACDAT  => AUD_DACDAT, -- :           OUT std_logic; -- DAC data line
 		AUD_DACLRCK => AUD_DACLRCK, --
 		AUD_ADCLRCK => AUD_ADCLRCK, -- :          IN std_logic; -- DAC data left/right select
@@ -95,9 +95,14 @@ BEGIN
     RDATA       => x"0000",
 
 		I2C_SDAT    => I2C_SDAT, -- :             OUT std_logic; -- serial interface data line
-		I2C_SCLK    => I2C_SCLK -- :             OUT std_logic;  -- serial interface clock
+		I2C_SCLK    => I2C_SCLK -- :              OUT std_logic;  -- serial interface clock
 	);
 
+
+  get_ps2_data:
+  
+  
+  
   get_adc_data: PROCESS(clk, reset_n)
   BEGIN 
     IF(reset_n = '0') THEN
