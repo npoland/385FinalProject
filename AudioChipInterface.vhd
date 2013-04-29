@@ -30,7 +30,7 @@ use ieee.std_logic_unsigned.all;
 entity AudioInterface is
    Port ( Clk        : in std_logic;
           Enable     : in std_logic;
-          TakeSample : in std_logic;
+          TakeSample : in std_logic);
 end AudioInterface;
 
 architecture Behavioral of AudioInterface is

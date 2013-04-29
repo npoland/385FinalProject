@@ -30,13 +30,13 @@ entity I2C is
           Enable : in std_logic;
           RW     : in std_logic;
           SDL    : out std_logic;
-          SCL    : out std_logic;
+          SCL    : out std_logic);
 end BackgroundColor;
 
 
 entity I2C is
     Port( clk           : in std_logic;
-          Reset         : in std_logic;
+          Reset         : in std_logic);
 end I2C;
 
 architecture Behavioral of I2C is
