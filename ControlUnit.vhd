@@ -66,6 +66,9 @@ component audio_interface IS
 	);
 END component;
 
+
+
+
   TYPE machine IS(s_init, s_i2c_write, s_i2c_wait, s_run, s_error); --needed states
   SIGNAL state      :  machine;                                             --state machine 
   SIGNAL INIT, INIT_FINISH, adc_full_prev, adc_full, data_over : STD_LOGIC;            --i2c port mapping signals
@@ -99,7 +102,9 @@ BEGIN
 	);
 
 
-  
+
+ 
+ 
   
   
   

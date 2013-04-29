@@ -84,7 +84,7 @@ begin
 
 vgaSync_instance : vga_controller
    Port map(clk => clk,
-            Reset => Reset,
+            Reset => not Reset,
             hs => hs,
             vs => vsSig,
             pixel_clk => VGA_clk,

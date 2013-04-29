@@ -28,7 +28,7 @@ use IEEE.STD_LOGIC_UNSIGNED.ALL;
 
 entity vga_controller is 
   Port ( clk       : in  std_logic;  -- 50 MHz clock
-         reset     : in  std_logic;  -- reset signal
+         resets    : in  std_logic;  -- reset signal
          hs        : out std_logic;  -- Horizontal sync pulse.  Active low
          vs        : out std_logic;  -- Vertical sync pulse.  Active low
          pixel_clk : out std_logic;  -- 25 MHz pixel clock output
@@ -52,6 +52,8 @@ architecture Behavioral of vga_controller is
 
   --signal indicates if ok to display color for a pixel
   signal display : std_logic;
+
+  signal reset : std_logic := not resets;
 
 begin
   -- Disable Composite Sync

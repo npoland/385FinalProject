@@ -34,7 +34,7 @@ begin
 
   RGB_Display : process (DrawX, DrawY)
   begin
-    Red   <= "0000000000";
+    Red   <= "1111111111";
     Green <= "0000000000";
     Blue  <= "0000000000";
   end process RGB_Display;
