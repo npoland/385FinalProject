@@ -5,12 +5,12 @@
 --|                  &                  |--
 --|              Phil Lange             |--
 -------------------------------------------
---|              MUX_2to1.vhd           |--
+--|               reg_16.vhd            |--
 --|               Version: 0            |--
 --|            Created 4/4/2013         |--
 -------------------------------------------
 --|             Description:            |--
---|         This is a 2 to 1 mux        |--
+--|       This is a 16-bit register     |--
 --|-------------------------------------|--
 -------------------------------------------
 
@@ -19,16 +19,27 @@ use ieee.std_logic_1164.all;
 use ieee.std_logic_arith.all;
 use ieee.std_logic_unsigned.all;
 
+entity reg_8bit_temp is
+Port (  ld,clk,reset_n 	: in std_logic;
+        DIN 			      : in std_logic;
+        DOUT 		        : out std_logic_vector(7 downto 0));
+end reg_8bit_temp;
 
-entity MUX_2to1 is
-  port( sel : in std_logic;
-        D0, D1 : in std_logic_vector(3 downto 0);
-        Dout: out std_logic_vector(3 downto 0));
-end entity;
+architecture Behavioral of reg_8bit_temp is
 
-architecture behavioral of MUX_2to1 is
+signal reg_val: std_logic_vector(7 downto 0);
+
 begin
-  with sel select  
-    Dout <= D0 when '0',
-            D1 when '1';
-end behavioral;
+  update_register: process(clk)
+  BEGIN
+    IF(reset_n = '0')THEN
+      reg_val <= x"00";
+    ELSIF(clk'EVENT AND clk = '1')THEN
+      IF(ld = '1')THEN
+        reg_val <= reg_val(6 downto 0) & DIN;
+      END IF;
+    END IF;
+  END PROCESS;
+  DOUT <= reg_val;
+end Behavioral;
+

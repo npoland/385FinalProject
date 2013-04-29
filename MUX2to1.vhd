@@ -20,13 +20,13 @@ use ieee.std_logic_arith.all;
 use ieee.std_logic_unsigned.all;
 
 
-entity MUX_2to1 is
+entity MUX2to1 is
   port( sel : in std_logic;
-        D0, D1 : in std_logic_vector(3 downto 0);
-        Dout: out std_logic_vector(3 downto 0));
+        D0, D1 : in std_logic_vector(15 downto 0);
+        Dout: out std_logic_vector(15 downto 0));
 end entity;
 
-architecture behavioral of MUX_2to1 is
+architecture behavioral of MUX2to1 is
 begin
   with sel select  
     Dout <= D0 when '0',
