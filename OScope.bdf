@@ -1345,21 +1345,6 @@ applicable agreement for further details.
 	(bus)
 )
 (connector
-	(pt 2504 1576)
-	(pt 2472 1576)
-	(bus)
-)
-(connector
-	(pt 2472 1576)
-	(pt 2472 1832)
-	(bus)
-)
-(connector
-	(pt 2400 1832)
-	(pt 2472 1832)
-	(bus)
-)
-(connector
 	(text "adc_data[31..16]" (rect 2392 1520 2474 1532)(font "Arial" ))
 	(pt 2472 1528)
 	(pt 2504 1528)
