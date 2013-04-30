@@ -46,7 +46,9 @@ ENTITY ControlUnit IS
 		SAMPLE_COUNT: OUT STD_LOGIC_VECTOR(8 DOWNTO 0);
 		
 		KEYCODE     : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
-		keypress    : OUT STD_LOGIC
+		keypress    : OUT STD_LOGIC;
+		
+		SAMPLE_COUNT_INT: OUT INTEGER RANGE 0 to 511
     );
 END ControlUnit;
 
@@ -132,15 +134,17 @@ BEGIN
     ELSIF(clk'EVENT AND clk = '1')THEN
       adc_full_prev <= adc_full;
       IF(adc_full_prev = '0' AND adc_full ='1')THEN
-        SAMP_COUNTER <= SAMP_COUNTER + 1;
-        ld_adc <= '1';
+        SAMP_COUNTER <= SAMP_COUNTER + '1';
+--        ld_adc <= '1';
       ELSE
-        ld_adc <= '0';
+--        ld_adc <= '0';
       END IF;
     END IF;
   END PROCESS;
   
+  ld_adc <= adc_full;
   SAMPLE_COUNT <= SAMP_COUNTER;
+  SAMPLE_COUNT_INT <= CONV_INTEGER(SAMP_COUNTER);
   
   next_state: process(clk, reset_n) 
   BEGIN
