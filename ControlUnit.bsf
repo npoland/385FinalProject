@@ -20,9 +20,9 @@ applicable agreement for further details.
 */
 (header "symbol" (version "1.1"))
 (symbol
-	(rect 16 16 264 176)
+	(rect 16 16 264 208)
 	(text "ControlUnit" (rect 5 0 60 12)(font "Arial" ))
-	(text "inst" (rect 8 144 25 156)(font "Arial" ))
+	(text "inst" (rect 8 176 25 188)(font "Arial" ))
 	(port
 		(pt 0 32)
 		(input)
@@ -64,6 +64,20 @@ applicable agreement for further details.
 		(text "AUD_ADCLRCK" (rect 0 0 82 12)(font "Arial" ))
 		(text "AUD_ADCLRCK" (rect 21 107 103 119)(font "Arial" ))
 		(line (pt 0 112)(pt 16 112)(line_width 1))
+	)
+	(port
+		(pt 0 128)
+		(input)
+		(text "PS2_CLK" (rect 0 0 47 12)(font "Arial" ))
+		(text "PS2_CLK" (rect 21 123 68 135)(font "Arial" ))
+		(line (pt 0 128)(pt 16 128)(line_width 1))
+	)
+	(port
+		(pt 0 144)
+		(input)
+		(text "PS2_DAT" (rect 0 0 47 12)(font "Arial" ))
+		(text "PS2_DAT" (rect 21 139 68 151)(font "Arial" ))
+		(line (pt 0 144)(pt 16 144)(line_width 1))
 	)
 	(port
 		(pt 248 32)
@@ -114,7 +128,21 @@ applicable agreement for further details.
 		(text "SAMPLE_COUNT[8..0]" (rect 114 123 227 135)(font "Arial" ))
 		(line (pt 248 128)(pt 232 128)(line_width 3))
 	)
+	(port
+		(pt 248 144)
+		(output)
+		(text "KEYCODE[7..0]" (rect 0 0 80 12)(font "Arial" ))
+		(text "KEYCODE[7..0]" (rect 147 139 227 151)(font "Arial" ))
+		(line (pt 248 144)(pt 232 144)(line_width 3))
+	)
+	(port
+		(pt 248 160)
+		(output)
+		(text "keypress" (rect 0 0 46 12)(font "Arial" ))
+		(text "keypress" (rect 181 155 227 167)(font "Arial" ))
+		(line (pt 248 160)(pt 232 160)(line_width 1))
+	)
 	(drawing
-		(rectangle (rect 16 16 232 144)(line_width 1))
+		(rectangle (rect 16 16 232 176)(line_width 1))
 	)
 )

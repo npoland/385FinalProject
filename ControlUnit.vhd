@@ -27,47 +27,61 @@ USE ieee.std_logic_unsigned.all;
 
 ENTITY ControlUnit IS
   PORT(
-    clk       : IN    STD_LOGIC;                      --system clock
-    reset_n   : IN    STD_LOGIC;                      --active low reset
+    clk         : IN    STD_LOGIC;                      --system clock
+    reset_n     : IN    STD_LOGIC;                      --active low reset
+
+		AUD_BCLK    : IN std_logic; -- Digital Audio bit clock
+		AUD_ADCDAT  : IN std_logic;
+    AUD_DACLRCK, AUD_ADCLRCK :IN std_logic; -- DAC data left/right select
+
+    PS2_CLK     : IN std_logic;
+    PS2_DAT     : IN std_logic;
     
-    ADCDATA   : OUT   STD_LOGIC_VECTOR(31 DOWNTO 0);
-    AUD_MCLK :             OUT std_logic; -- Codec master clock OUTPUT
-		AUD_BCLK :             IN std_logic; -- Digital Audio bit clock
-		AUD_ADCDAT :			IN std_logic;
-		AUD_DACDAT :           OUT std_logic; -- DAC data line
-		AUD_DACLRCK, AUD_ADCLRCK :          IN std_logic; -- DAC data left/right select
+    ADCDATA     : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
+    AUD_MCLK    : OUT std_logic; -- Codec master clock OUTPUT
+		AUD_DACDAT  : OUT std_logic; -- DAC data line
+		LD_ADC      : OUT STD_LOGIC;
+		I2C_SDAT    : OUT std_logic; -- serial interface data line
+		I2C_SCLK    : OUT std_logic;  -- serial interface clock
+		SAMPLE_COUNT: OUT STD_LOGIC_VECTOR(8 DOWNTO 0);
 		
-		LD_ADC   : OUT   STD_LOGIC;
-		
-		I2C_SDAT :             OUT std_logic; -- serial interface data line
-		I2C_SCLK :             OUT std_logic;  -- serial interface clock
-		
-		SAMPLE_COUNT  :   OUT STD_LOGIC_VECTOR(8 DOWNTO 0)
+		KEYCODE     : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
+		keypress    : OUT STD_LOGIC
     );
 END ControlUnit;
 
 ARCHITECTURE mixed OF ControlUnit IS
+
+COMPONENT ps2keyboardblock IS 
+	PORT
+	(
+		Clk :  IN  STD_LOGIC;
+		reset_n :  IN  STD_LOGIC;
+		PS2_CLK :  IN  STD_LOGIC;
+		PS2_DAT :  IN  STD_LOGIC;
+		KeyCode :  OUT  STD_LOGIC_VECTOR(7 DOWNTO 0);
+		keypress :  OUT  STD_LOGIC
+	);
+END COMPONENT;
+
 component audio_interface IS
 	PORT
 	(	
-		LDATA, RDATA	:      IN std_logic_vector(15 downto 0); -- parallel external data inputs
-		clk, Reset, INIT : IN std_logic; 
-		INIT_FINISH :				OUT std_logic;
-		adc_full :			OUT std_logic;
-		data_over :          OUT std_logic; -- sample sync pulse
-		AUD_MCLK :             OUT std_logic; -- Codec master clock OUTPUT
-		AUD_BCLK :             IN std_logic; -- Digital Audio bit clock
-		AUD_ADCDAT :			IN std_logic;
-		AUD_DACDAT :           OUT std_logic; -- DAC data line
-		AUD_DACLRCK, AUD_ADCLRCK :          IN std_logic; -- DAC data left/right select
-		I2C_SDAT :             OUT std_logic; -- serial interface data line
-		I2C_SCLK :             OUT std_logic;  -- serial interface clock
-		ADCDATA : 				OUT std_logic_vector(31 downto 0)
+		LDATA, RDATA:       IN std_logic_vector(15 downto 0); -- parallel external data inputs
+		clk, Reset, INIT :  IN std_logic; 
+		INIT_FINISH :			  OUT std_logic;
+		adc_full    :			  OUT std_logic;
+		data_over   :       OUT std_logic; -- sample sync pulse
+		AUD_MCLK    :       OUT std_logic; -- Codec master clock OUTPUT
+		AUD_BCLK    :       IN std_logic; -- Digital Audio bit clock
+		AUD_ADCDAT  :			  IN std_logic;
+		AUD_DACDAT  :       OUT std_logic;               -- DAC data line
+		AUD_DACLRCK, AUD_ADCLRCK :          IN std_logic;   -- DAC data left/right select
+		I2C_SDAT    :       OUT std_logic;               -- serial interface data line
+		I2C_SCLK    :       OUT std_logic;  -- serial interface clock
+		ADCDATA     :       OUT std_logic_vector(31 downto 0)
 	);
 END component;
-
-
-
 
   TYPE machine IS(s_init, s_i2c_write, s_i2c_wait, s_run, s_error); --needed states
   SIGNAL state      :  machine;                                             --state machine 
@@ -76,6 +90,7 @@ END component;
 
   SIGNAL SAMP_COUNTER  : STD_LOGIC_VECTOR(8 DOWNTO 0);
   SIGNAL ADC_COUNT: STD_LOGIC_VECTOR(7 DOWNTO 0);
+  
 BEGIN
 
   ADC : audio_interface port map(
@@ -101,13 +116,15 @@ BEGIN
 		I2C_SCLK    => I2C_SCLK -- :              OUT std_logic;  -- serial interface clock
 	);
 
-
-
+  PS2 : ps2keyboardblock port map(
+    clk         => clk,
+    reset_n     => reset_n,
+    PS2_CLK     => PS2_CLK,
+    PS2_DAT     => PS2_DAT,
+    KeyCode     => KeyCode,
+    keypress    => keypress
+  );
  
- 
-  
-  
-  
   get_adc_data: PROCESS(clk, reset_n)
   BEGIN 
     IF(reset_n = '0') THEN
