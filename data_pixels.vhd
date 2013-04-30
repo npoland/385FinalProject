@@ -16,10 +16,14 @@ entity data_pixels is
 			DrawY   :  	IN  STD_LOGIC_VECTOR(9 DOWNTO 0);
 			
 			
-      Red   : out std_logic_vector(9 downto 0);
-      Green : out std_logic_vector(9 downto 0);
-      Blue  : out std_logic_vector(9 downto 0);
-      
+      RedIn   : in std_logic_vector(9 downto 0);
+      GreenIn : in std_logic_vector(9 downto 0);
+      BlueIn  : in std_logic_vector(9 downto 0);
+
+      RedOut   : out std_logic_vector(9 downto 0);
+      GreenOut : out std_logic_vector(9 downto 0);
+      BlueOut  : out std_logic_vector(9 downto 0);
+            
       SAMPLE_COUNT_INT: IN  INTEGER RANGE 0 to 511;
       pause_n : IN STD_LOGIC
 			);
@@ -83,13 +87,13 @@ begin
 	RGB_Display : process (pixel_on, DrawX, DrawY)
   begin
     if (pixel_on = '1') then -- draw data
-      Red   <= "1111111111";
-      Green <= "1111111111";
-      Blue  <= "1111111111";
+      RedOut   <= "1111111111";
+      GreenOut <= "1111111111";
+      BlueOut  <= "1111111111";
     else          -- black background
-      Red   <= "0000000000";
-      Green <= "0000000000";
-      Blue  <= "0000000000";
+      RedOut   <= RedIn;
+      GreenOut <= GreenIn;
+      BlueOut  <= BlueIn;
     end if;
   end process RGB_Display;
 
