@@ -33,9 +33,16 @@ applicable agreement for further details.
 	(port
 		(pt 0 48)
 		(input)
-		(text "addr[10..0]" (rect 0 0 53 12)(font "Arial" ))
-		(text "addr[10..0]" (rect 21 43 74 55)(font "Arial" ))
+		(text "char[6..0]" (rect 0 0 47 12)(font "Arial" ))
+		(text "char[6..0]" (rect 21 43 68 55)(font "Arial" ))
 		(line (pt 0 48)(pt 16 48)(line_width 3))
+	)
+	(port
+		(pt 0 64)
+		(input)
+		(text "row[3..0]" (rect 0 0 42 12)(font "Arial" ))
+		(text "row[3..0]" (rect 21 59 63 71)(font "Arial" ))
+		(line (pt 0 64)(pt 16 64)(line_width 3))
 	)
 	(port
 		(pt 152 32)
