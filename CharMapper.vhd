@@ -31,37 +31,51 @@ use ieee.std_logic_unsigned.all;
 -- to the scope. This will have to be 64 chunks by 16 to
 -- make the 512x256 pixel grid for the scope.
 
--- The chunks will come from outside entities and will
--- be passed to the scope mapping entity. There will
--- need to be:
--- -menu mapper
--- -division maper(for time and volts and stuff)
--- -some stats?
 
 
-entity HxDriver is
-   port ( In0  : in  std_logic_vector(3 downto 0);
-          Out0 : out std_logic_vector(6 downto 0));
-end HxDriver;
-architecture Behavioral of HxDriver is
+entity CharMapper is
+   port ( DrawX     : in  std_logic_vector(9 downto 0);
+          DrawY     : in std_logic_vector(9 downto 0);
+          RedIn     : in std_logic_vector(9 downto 0);
+          BlueIn    : in std_logic_vector(9 downto 0);
+          GreenIn   : in std_logic_vector(9 downto 0);
+          RedOut    : out std_logic_vector(9 downto 0);
+          BlueOut   : out std_logic_vector(9 downto 0);
+          GreenOut  : out std_logic_vector(9 downto 0);
+          addr      : out std_logic_vector(11 downto 0)
+          );
+end CharMapper;
+architecture Behavioral of CharMapper is
 
+signal current  : std_logic_vector(11 downto 0)  := "000000000000";
+signal countx   : std_logic_vector(2 downto 0) := "000";
+signal county   : std_logic_vector(15 downto 0) := "0000000000000000";
 begin
-  with In0 select
-    Out0 <= "1000000" when "0000" , -- '0'
-            "1111001" when "0001" , -- '1'
-            "0100100" when "0010" , -- '2'
-            "0110000" when "0011" , -- '3'
-            "0011001" when "0100" , -- '4'
-            "0010010" when "0101" , -- '5'
-            "0000010" when "0110" , -- '6'
-            "1111000" when "0111" , -- '7'
-            "0000000" when "1000" , -- '8'
-            "0010000" when "1001" , -- '9'
-            "0001000" when "1010" , -- 'A'
-            "0000011" when "1011" , -- 'B'
-            "1000110" when "1100" , -- 'C'
-            "0100001" when "1101" , -- 'D'
-            "0000110" when "1110" , -- 'E'
-            "0001110" when "1111" , -- 'F'
-            "XXXXXXX" when others;
+
+--just put to screen whatever is in the CharGrid
+
+--Some counting needs to be done because the characters are in an array thing
+
+--when drawX changes so does the address of the character
+
+--when drawY changes there needs to be some kind of offset
+--ex drawY between zero and 15 is not offset so... we can divide
+--drawY by 16 using some shifts
+
+	xPosition : process(DrawX(0))
+	begin
+
+		if(countx = "111") then
+      BlueOut <="0000000000";
+    else
+			BlueOut <="1111111111";
+		end if;
+		  countx  <= countx + 1;
+	end process;
+
+--Mask DrawY 
+
+  RedOut   <="1111111111";
+  GreenOut <="1111111111";
+
 end Behavioral;
