@@ -99,9 +99,9 @@ BEGIN
 	);
 
 
-  get_ps2_data:
-  
-  
+--  get_ps2_data:
+--  
+--  
   
   get_adc_data: PROCESS(clk, reset_n)
   BEGIN 

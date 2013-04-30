@@ -290,7 +290,7 @@ applicable agreement for further details.
 		(line (pt 82 8)(pt 78 12)(line_width 1))
 		(line (pt 78 12)(pt 82 8)(line_width 1))
 	)
-	(annotation_block (location)(rect 2344 1240 2408 1464))
+	(annotation_block (location)(rect 2384 1232 2448 1456))
 )
 (pin
 	(output)
@@ -1342,21 +1342,6 @@ applicable agreement for further details.
 	(text "amplitudeY[15..4]" (rect 2781 1536 2868 1548)(font "Arial" ))
 	(pt 2672 1544)
 	(pt 2768 1544)
-	(bus)
-)
-(connector
-	(pt 2504 1576)
-	(pt 2472 1576)
-	(bus)
-)
-(connector
-	(pt 2472 1576)
-	(pt 2472 1832)
-	(bus)
-)
-(connector
-	(pt 2400 1832)
-	(pt 2472 1832)
 	(bus)
 )
 (connector
