@@ -39,6 +39,7 @@ entity CharMapper is
           RedIn     : in std_logic_vector(9 downto 0);
           BlueIn    : in std_logic_vector(9 downto 0);
           GreenIn   : in std_logic_vector(9 downto 0);
+          DataIn    : in std_logic_vector(7 downto 0);
           RedOut    : out std_logic_vector(9 downto 0);
           BlueOut   : out std_logic_vector(9 downto 0);
           GreenOut  : out std_logic_vector(9 downto 0);
@@ -47,9 +48,6 @@ entity CharMapper is
 end CharMapper;
 architecture Behavioral of CharMapper is
 
-signal current  : std_logic_vector(11 downto 0)  := "000000000000";
-signal countx   : std_logic_vector(2 downto 0) := "000";
-signal county   : std_logic_vector(15 downto 0) := "0000000000000000";
 begin
 
 --just put to screen whatever is in the CharGrid
@@ -62,20 +60,19 @@ begin
 --ex drawY between zero and 15 is not offset so... we can divide
 --drawY by 16 using some shifts
 
-	xPosition : process(DrawX(0))
+
+	xPosition : process(DrawX,DrawY)
 	begin
+    addr <= (( DrawX(9 downto 3)) & DrawY(4 downto 0));
 
-		if(countx = "111") then
-      BlueOut <="0000000000";
-    else
-			BlueOut <="1111111111";
-		end if;
-		  countx  <= countx + 1;
+	    if((DataIn(conv_integer(not DrawX(2 downto 0)))) = '1') then
+        RedOut   <="1111111111";
+        GreenOut <="1111111111";
+        BlueOut  <="1111111111";
+      else
+        RedOut   <= RedIn;
+        GreenOut <= GreenIn;
+        BlueOut  <= BlueIn;
+      end if;
 	end process;
-
---Mask DrawY 
-
-  RedOut   <="1111111111";
-  GreenOut <="1111111111";
-
 end Behavioral;
