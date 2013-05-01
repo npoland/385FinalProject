@@ -12,12 +12,15 @@ use ieee.numeric_std.all;
 entity font_rom is
    port(
       clk: in std_logic;
-      addr: in std_logic_vector(10 downto 0);
+      char: in std_logic_vector(7 downto 0);
+      offset: in std_logic_vector(3 downto 0);
       data: out std_logic_vector(7 downto 0)
    );
 end font_rom;
 
 architecture arch of font_rom is
+   
+   signal addr : std_logic_vector(10 downto 0) := offset & char(6 downto 0);
    constant ADDR_WIDTH: integer:=11;
    constant DATA_WIDTH: integer:=8;
    signal addr_reg: std_logic_vector(ADDR_WIDTH-1 downto 0);
@@ -2200,7 +2203,7 @@ architecture arch of font_rom is
    "00000000", -- c
    "00000000", -- d
    "00000000", -- e
-   "00000000"  -- f
+   "00000000"
    );
 begin
    -- addr register to infer block RAM
