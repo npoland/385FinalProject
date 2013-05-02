@@ -43,7 +43,7 @@ entity CharMapper is
           RedOut    : out std_logic_vector(9 downto 0);
           BlueOut   : out std_logic_vector(9 downto 0);
           GreenOut  : out std_logic_vector(9 downto 0);
-          addr      : out std_logic_vector(11 downto 0)
+          addr      : out std_logic_vector(10 downto 0)
           );
 end CharMapper;
 architecture Behavioral of CharMapper is
@@ -63,7 +63,7 @@ begin
 
 	xPosition : process(DrawX,DrawY)
 	begin
-    addr <= (( DrawX(9 downto 3)) & DrawY(4 downto 0));
+    addr <= (( DrawX(9 downto 3)) & DrawY(3 downto 0));
 
 	    if((DataIn(conv_integer(not DrawX(2 downto 0)))) = '1') then
         RedOut   <="1111111111";
